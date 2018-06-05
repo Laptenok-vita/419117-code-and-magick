@@ -50,10 +50,10 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  var colorColumn = 'rgb(0, 0, ' + (Math.floor(256 * Math.random())) + ')';
+  var colorColumn = 'rgba(0, 0, ' + (Math.floor(256 * Math.random())) + ', 1)';
 
   for (var i = 0; i < names.length; i++) {
-    names[i] === 'Вы' ? ctx.fillStyle = 'rgb(255, 0, 0)' : ctx.fillStyle = colorColumn;
+    names[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = colorColumn;
 
     ctx.fillText(names[i], COLUMN_X + COLUMN_GAP * i, COLUMN_Y + GAP);
     ctx.fillRect(COLUMN_X + COLUMN_GAP * i, COLUMN_Y, COLUMN_WIDTH, -(columnHeight * times[i]) / maxTime);
