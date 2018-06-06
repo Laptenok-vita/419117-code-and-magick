@@ -7,11 +7,11 @@ var CLOUD_X = 100;
 var CLOUD_Y = 10;
 var GAP = 10;
 
+var FONT_GAP = 16;
+var FONT_HEIGHT = 16;
 var COLUMN_X = 155;
 var COLUMN_Y = 245;
 var COLUMN_WIDTH = 40;
-var FONT_GAP = 16;
-var FONT_HEIGHT = 16;
 var columnHeight = CLOUD_HEIGHT - FONT_HEIGHT * 3 - FONT_GAP * 4;
 var COLUMN_GAP = 80;
 
