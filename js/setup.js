@@ -10,22 +10,22 @@ var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var wizards = [
   {
-    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length - 0))],
+    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length))],
     coatsColor: COATS_COLOR[Math.floor(Math.random() * (COATS_COLOR.length))],
     eyesColor: EYES_COLOR[Math.floor(Math.random() * (EYES_COLOR.length))]
   },
   {
-    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length - 0))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length - 0))],
+    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length))],
     coatsColor: COATS_COLOR[Math.floor(Math.random() * (COATS_COLOR.length))],
     eyesColor: EYES_COLOR[Math.floor(Math.random() * (EYES_COLOR.length))]
   },
   {
-    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length - 0))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length - 0))],
+    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length))],
     coatsColor: COATS_COLOR[Math.floor(Math.random() * (COATS_COLOR.length))],
     eyesColor: EYES_COLOR[Math.floor(Math.random() * (EYES_COLOR.length))]
   },
   {
-    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length - 0))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length - 0))],
+    name: WIZARD_NAMES[Math.floor(Math.random() * (WIZARD_NAMES.length))] + ' ' + WIZARD_SURNAMES[Math.floor(Math.random() * (WIZARD_SURNAMES.length))],
     coatsColor: COATS_COLOR[Math.floor(Math.random() * (COATS_COLOR.length))],
     eyesColor: EYES_COLOR[Math.floor(Math.random() * (EYES_COLOR.length))]
   }
