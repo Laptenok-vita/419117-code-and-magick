@@ -39,11 +39,11 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
+var fragment = document.createDocumentFragment();
 // Цикл, запускающий создание массова объектов, клонирование элементов и вставку на страницу
 for (var i = 0; i < WIZARDS_AMOUNT; i++) {
-  var fragment = document.createDocumentFragment();
   fragment.appendChild(renderWizard(createWizards()));
-  similarListElement.appendChild(fragment);
 }
 
+similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
