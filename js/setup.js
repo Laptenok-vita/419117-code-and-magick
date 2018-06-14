@@ -47,3 +47,50 @@ for (var i = 0; i < WIZARDS_AMOUNT; i++) {
 
 similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+var setupOpen = document.querySelector('.setup-open');
+var setupWizardForm = document.querySelector('.setup-wizard-form');
+var setupClose = setupWizardForm.querySelector('.setup-close');
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setupWizardForm.classList.remove('hidden');
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ESC_KEYCODE && focus.target.setupWizardForm !== 'INPUT') {
+      closePopup();
+    }
+  });
+};
+
+var closePopup = function () {
+  setupWizardForm.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
