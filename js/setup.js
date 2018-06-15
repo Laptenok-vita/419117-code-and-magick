@@ -8,7 +8,25 @@ var COATS_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161
 
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var FIREBALLS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
+var setupOpen = document.querySelector('.setup-open');
+var setupWizardForm = document.querySelector('.setup-wizard-form');
+var setupClose = setupWizardForm.querySelector('.setup-close');
+var wizardCoatsColor = document.querySelector('.wizard-coat');
+var wizardEyesColor = document.querySelector('.wizard-eyes');
+var fireballBlock = document.querySelector('.setup-fireball-wrap');
+var wizardfireballColor = fireballBlock.querySelector('.setup-fireball');
+var wizardfireballValue = fireballBlock.querySelector('input[name=fireball-color]');
+
 var WIZARDS_AMOUNT = 4;
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+// Функция генерации случайного индекса массива
+var getRandomValueFromArray = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
+};
 
 // Функция создания массива объектов
 var createWizards = function () {
@@ -20,9 +38,11 @@ var createWizards = function () {
   return wizards;
 };
 
+// Нахожу класс у которого нужно удалить 'hidden' и удаляю 'hidden'
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
+// Нахожу класс куда буду добавлять копии и шаблон
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -45,14 +65,9 @@ for (var i = 0; i < WIZARDS_AMOUNT; i++) {
   fragment.appendChild(renderWizard(createWizards()));
 }
 
+// Делаю видимыми копии волшебников
 similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
-
-var setupOpen = document.querySelector('.setup-open');
-var setupWizardForm = document.querySelector('.setup-wizard-form');
-var setupClose = setupWizardForm.querySelector('.setup-close');
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -60,9 +75,9 @@ var onPopupEscPress = function (evt) {
   }
 };
 
+// Функция открывания окна настроек(удаляю класс 'hidden')
 var openPopup = function () {
   setupWizardForm.classList.remove('hidden');
-
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ESC_KEYCODE && focus.target.setupWizardForm !== 'INPUT') {
       closePopup();
@@ -70,11 +85,30 @@ var openPopup = function () {
   });
 };
 
+// Объявляю функции взаимодействия
 var closePopup = function () {
   setupWizardForm.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  wizardCoatsColor.removeEventListener('click', changeCoatsColor);
+  wizardEyesColor.removeEventListener('click', changeEyesColor);
+  wizardfireballColor.removeEventListener('click', changeFireballsColor);
 };
 
+var changeCoatsColor = function () {
+  wizardCoatsColor.style.fill = getRandomValueFromArray(COATS_COLOR);
+};
+
+var changeEyesColor = function () {
+  wizardEyesColor.style.fill = getRandomValueFromArray(EYES_COLOR);
+};
+
+var changeFireballsColor = function () {
+  var randomColor = getRandomValueFromArray(FIREBALLS);
+  fireballBlock.style.background = randomColor;
+  wizardfireballValue.value = randomColor;
+};
+
+// Добавляю события на страницу
 setupOpen.addEventListener('click', function () {
   openPopup();
 });
@@ -93,4 +127,16 @@ setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
+});
+
+wizardCoatsColor.addEventListener('click', function () {
+  changeCoatsColor();
+});
+
+wizardEyesColor.addEventListener('click', function () {
+  changeEyesColor();
+});
+
+wizardfireballColor.addEventListener('click', function () {
+  changeFireballsColor();
 });
