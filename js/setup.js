@@ -123,7 +123,5 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 wizardCoatsColor.addEventListener('click', changeCoatsColor);
-
 wizardEyesColor.addEventListener('click', changeEyesColor);
-
 wizardFireBallColor.addEventListener('click', changeFireBallsColor);
