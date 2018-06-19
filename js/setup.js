@@ -12,12 +12,13 @@ var FIREBALLS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 var setupOpen = document.querySelector('.setup-open');
 var setupWizardForm = document.querySelector('.setup-wizard-form');
+var setupWizardNameForm = document.querySelector('.setup-user-name');
 var setupClose = setupWizardForm.querySelector('.setup-close');
 var wizardCoatsColor = document.querySelector('.wizard-coat');
 var wizardEyesColor = document.querySelector('.wizard-eyes');
-var fireballBlock = document.querySelector('.setup-fireball-wrap');
-var wizardfireballColor = fireballBlock.querySelector('.setup-fireball');
-var wizardfireballValue = fireballBlock.querySelector('input[name=fireball-color]');
+var fireBallBlock = document.querySelector('.setup-fireball-wrap');
+var wizardFireBallColor = fireBallBlock.querySelector('.setup-fireball');
+var wizardFireBallValue = fireBallBlock.querySelector('input[name=fireball-color]');
 
 var WIZARDS_AMOUNT = 4;
 var ESC_KEYCODE = 27;
@@ -70,7 +71,7 @@ similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && evt.target !== setupWizardNameForm) {
     closePopup();
   }
 };
@@ -78,20 +79,13 @@ var onPopupEscPress = function (evt) {
 // Функция открывания окна настроек(удаляю класс 'hidden')
 var openPopup = function () {
   setupWizardForm.classList.remove('hidden');
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && focus.target.setupWizardForm !== 'INPUT') {
-      closePopup();
-    }
-  });
+  document.addEventListener('keydown', onPopupEscPress);
 };
 
 // Объявляю функции взаимодействия
 var closePopup = function () {
   setupWizardForm.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
-  wizardCoatsColor.removeEventListener('click', changeCoatsColor);
-  wizardEyesColor.removeEventListener('click', changeEyesColor);
-  wizardfireballColor.removeEventListener('click', changeFireballsColor);
 };
 
 var changeCoatsColor = function () {
@@ -102,10 +96,10 @@ var changeEyesColor = function () {
   wizardEyesColor.style.fill = getRandomValueFromArray(EYES_COLOR);
 };
 
-var changeFireballsColor = function () {
+var changeFireBallsColor = function () {
   var randomColor = getRandomValueFromArray(FIREBALLS);
-  fireballBlock.style.background = randomColor;
-  wizardfireballValue.value = randomColor;
+  fireBallBlock.style.background = randomColor;
+  wizardFireBallValue.value = randomColor;
 };
 
 // Добавляю события на страницу
@@ -137,6 +131,6 @@ wizardEyesColor.addEventListener('click', function () {
   changeEyesColor();
 });
 
-wizardfireballColor.addEventListener('click', function () {
-  changeFireballsColor();
+wizardFireBallColor.addEventListener('click', function () {
+  changeFireBallsColor();
 });
