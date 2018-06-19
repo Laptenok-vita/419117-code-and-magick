@@ -12,12 +12,15 @@ var FIREBALLS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 var setupOpen = document.querySelector('.setup-open');
 var setupWizardForm = document.querySelector('.setup-wizard-form');
+var setupWizardName = document.querySelector('.setup-user-name');
 var setupClose = setupWizardForm.querySelector('.setup-close');
 var wizardCoatsColor = document.querySelector('.wizard-coat');
+var wizardCoatsColorValue = setupWizardForm.querySelector('input[name="coat-color"]');
 var wizardEyesColor = document.querySelector('.wizard-eyes');
-var fireballBlock = document.querySelector('.setup-fireball-wrap');
-var wizardfireballColor = fireballBlock.querySelector('.setup-fireball');
-var wizardfireballValue = fireballBlock.querySelector('input[name=fireball-color]');
+var wizardEyesColorValue = setupWizardForm.querySelector('input[name="eyes-color"]');
+var fireBallBlock = document.querySelector('.setup-fireball-wrap');
+var wizardFireBallColor = fireBallBlock.querySelector('.setup-fireball');
+var wizardFireBallValue = fireBallBlock.querySelector('input[name=fireball-color]');
 
 var WIZARDS_AMOUNT = 4;
 var ESC_KEYCODE = 27;
@@ -70,7 +73,7 @@ similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && evt.target !== setupWizardName) {
     closePopup();
   }
 };
@@ -78,40 +81,32 @@ var onPopupEscPress = function (evt) {
 // Функция открывания окна настроек(удаляю класс 'hidden')
 var openPopup = function () {
   setupWizardForm.classList.remove('hidden');
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && focus.target.setupWizardForm !== 'INPUT') {
-      closePopup();
-    }
-  });
+  document.addEventListener('keydown', onPopupEscPress);
 };
 
 // Объявляю функции взаимодействия
 var closePopup = function () {
   setupWizardForm.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
-  wizardCoatsColor.removeEventListener('click', changeCoatsColor);
-  wizardEyesColor.removeEventListener('click', changeEyesColor);
-  wizardfireballColor.removeEventListener('click', changeFireballsColor);
 };
 
 var changeCoatsColor = function () {
   wizardCoatsColor.style.fill = getRandomValueFromArray(COATS_COLOR);
+  wizardCoatsColorValue.value = wizardCoatsColor.style.fill;
 };
 
 var changeEyesColor = function () {
   wizardEyesColor.style.fill = getRandomValueFromArray(EYES_COLOR);
+  wizardEyesColorValue.value = wizardEyesColor.style.fill;
 };
 
-var changeFireballsColor = function () {
-  var randomColor = getRandomValueFromArray(FIREBALLS);
-  fireballBlock.style.background = randomColor;
-  wizardfireballValue.value = randomColor;
+var changeFireBallsColor = function () {
+  fireBallBlock.style.background = getRandomValueFromArray(FIREBALLS);
+  wizardFireBallValue.value = fireBallBlock.style.background;
 };
 
 // Добавляю события на страницу
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
+setupOpen.addEventListener('click', openPopup);
 
 setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
@@ -119,9 +114,7 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
+setupClose.addEventListener('click', closePopup);
 
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
@@ -129,14 +122,8 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-wizardCoatsColor.addEventListener('click', function () {
-  changeCoatsColor();
-});
+wizardCoatsColor.addEventListener('click', changeCoatsColor);
 
-wizardEyesColor.addEventListener('click', function () {
-  changeEyesColor();
-});
+wizardEyesColor.addEventListener('click', changeEyesColor);
 
-wizardfireballColor.addEventListener('click', function () {
-  changeFireballsColor();
-});
+wizardFireBallColor.addEventListener('click', changeFireBallsColor);
