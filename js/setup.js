@@ -25,6 +25,7 @@ var wizardFireBallValue = fireBallBlock.querySelector('input[name=fireball-color
 var WIZARDS_AMOUNT = 4;
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var initCoord;
 
 // Функция генерации случайного индекса массива
 var getRandomValueFromArray = function (array) {
@@ -82,12 +83,18 @@ var onPopupEscPress = function (evt) {
 var openPopup = function () {
   setupWizardForm.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
+  initCoord = {
+    x: window.setupDialogElement.offsetLeft + 'px',
+    y: window.setupDialogElement.offsetTop + 'px'
+  };
 };
 
 // Объявляю функции взаимодействия
 var closePopup = function () {
   setupWizardForm.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  window.setupDialogElement.style.left = initCoord.x;
+  window.setupDialogElement.style.top = initCoord.y;
 };
 
 var changeCoatsColor = function () {
