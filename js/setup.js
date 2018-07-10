@@ -10,6 +10,7 @@ var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var FIREBALLS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
+window.setupDialogElement = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupWizardForm = document.querySelector('.setup-wizard-form');
 var setupWizardName = document.querySelector('.setup-user-name');
